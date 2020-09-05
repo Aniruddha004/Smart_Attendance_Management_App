@@ -3,7 +3,7 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 
-li = [{"model":"omkar", "age": 20},{"model":"rada", "age": 20},{"model":"ultra rada", "age": 20}]
+li = [{"model":"omkar", "age": 20},{"model":"modellll", "age": 20},{"model":"ultra modellll", "age": 20}]
 
 @app.route('/posts')
 def method():
