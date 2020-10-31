@@ -1,7 +1,30 @@
 package com.example.dbms_app;
 
 class Stundent {
-    private String name, _class, add, uid;
+    private String name;
+    private String _class;
+    private String add;
+    private String uid;
+    private String username;
+    private String image_path;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private String password;
 
     public String getName() {
         return name;
@@ -35,10 +58,14 @@ class Stundent {
         this.uid = uid;
     }
 
-    public Stundent(String name, String _class, String add, String uid) {
+    public Stundent(String name, String _class, String add, String uid, String username, String password, String image_path) {
         this.name = name;
         this._class = _class;
         this.add = add;
         this.uid = uid;
+        this.username = username;
+        this.password = password;
+        this.image_path = image_path;
     }
+
 }

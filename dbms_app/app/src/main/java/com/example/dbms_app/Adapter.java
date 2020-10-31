@@ -36,8 +36,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         svh.subject.setText(subjects.get(position).getSub_name());
         int total = subjects.get(position).getTotal_lectures();
         int att = subjects.get(position).getAttended_lectures();
-        float percent = (float)att/(float)total*100;
-
+        float percent;
+        if(total!=0)
+            percent = (float)att/(float)total*100;
+        else
+            percent= 0;
         svh.total.setText(String.format("Total: %d", total));
         svh.attended.setText(String.format("Attended: %d", att));
         svh.percent.setText(String.format("%.2f", percent) + "%");

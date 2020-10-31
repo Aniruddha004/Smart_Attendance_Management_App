@@ -10,16 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dbms_app"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Show">
+        <activity android:name=".Login"></activity>
+        <activity android:name=".Launcher" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Show">
 
         </activity>
+        <activity android:name=".MainActivity" />
     </application>
     <uses-permission
         android:name="android.permission.CAMERA"

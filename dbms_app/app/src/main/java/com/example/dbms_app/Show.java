@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
@@ -26,6 +27,8 @@ public class Show extends AppCompatActivity {
     RecyclerView rv;
     Callbacks callback;
     ArrayList<Subjects> subjects;
+    SharedPreferences sp;
+    private String prefs = "MYPREFS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +39,9 @@ public class Show extends AppCompatActivity {
         srl = findViewById(R.id.refresh);
         rv = findViewById(R.id.rv);
         subjects = new ArrayList<>();
-        get_attendance();
-
+        sp = getSharedPreferences(prefs, MODE_PRIVATE);
+        String uid = sp.getString("uid", "");
+        get_attendance(uid);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(layoutManager);
 
@@ -47,7 +51,7 @@ public class Show extends AppCompatActivity {
         srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                get_attendance();
+                get_attendance(uid);
                 srl.setRefreshing(false);
             }
         });
@@ -61,9 +65,9 @@ public class Show extends AppCompatActivity {
 
     }
 
-    private void get_attendance() {
+    private void get_attendance(String uid) {
 
-        Call<List<Subjects>> call = requests.get_attendance();
+        Call<List<Subjects>> call = requests.get_attendance(uid);
         call.enqueue(new Callback<List<Subjects>>() {
             @Override
             public void onResponse(Call<List<Subjects>> call, Response<List<Subjects>> response) {

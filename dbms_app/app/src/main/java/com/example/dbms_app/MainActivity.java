@@ -6,6 +6,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,6 +23,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -38,21 +42,38 @@ public class MainActivity extends AppCompatActivity {
     Retrofit retrofit;
     TextView submit;
     ImageView iv;
-    EditText nameet, addet, classet, uidet;
+    EditText nameet, addet, classet, uidet, usernameet, passwordet;
     boolean imageok = false, infook = false;
     Intent i;
     Context context;
+    SharedPreferences sp;
+    private String prefs = "MYPREFS";
+    private String filename;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sp = getSharedPreferences(prefs, MODE_PRIVATE);
+        boolean first = sp.getBoolean("ifFirst", true);
+        editor = sp.edit();
+        /*if(first){
+            String id = getalpnum(16);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("UID", id);
+            editor.commit();
+        }*/
+        filename = getalpnum(10) + ".jpg";
         nameet = findViewById(R.id.nameet);
         addet = findViewById(R.id.addet);
         classet = findViewById(R.id.classet);
         uidet = findViewById(R.id.uidet);
         iv = findViewById(R.id.iv);
         submit = findViewById(R.id.submit);
+        usernameet = findViewById(R.id.usernameet);
+        passwordet = findViewById(R.id.passwordet);
+
         context = MainActivity.this;
         retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.165:5000/").addConverterFactory(GsonConverterFactory.create()).build();
         requests = retrofit.create(Requests.class);
@@ -63,6 +84,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!imageok) {
                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    cameraIntent.putExtra("crop", "true");
+                    cameraIntent.putExtra("aspectX", 0);
+                    cameraIntent.putExtra("aspectY", 0);
+                    cameraIntent.putExtra("outputX", 150);
+                    cameraIntent.putExtra("outputY", 200);
                     startActivityForResult(cameraIntent, 1);
                 }
             }
@@ -74,8 +100,10 @@ public class MainActivity extends AppCompatActivity {
                 String _class = classet.getText().toString();
                 String add = addet.getText().toString();
                 String uid = uidet.getText().toString();
+                String password = get_SHA1(passwordet.getText().toString());
+                String username = usernameet.getText().toString();
 
-                Stundent stundent = new Stundent(name, _class, add, uid);
+                Stundent stundent = new Stundent(name, _class, add, uid, username, password, filename);
                 post_info(stundent);
 
 
@@ -98,13 +126,13 @@ public class MainActivity extends AppCompatActivity {
     private void upload_image(Bitmap bitmap) {
 
         //Bitmap bitmap;    // get bitmap from camera intent
-        final Bitmap fbitmap = Bitmap.createScaledBitmap(bitmap, 171, 279, true);
+        final Bitmap fbitmap = Bitmap.createScaledBitmap(bitmap, 150, 200, true);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         //bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.dog);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] byteArray = stream.toByteArray();
 
-        File f = new File(this.getCacheDir(), "image.jpg");
+        File f = new File(this.getCacheDir(), filename);
         try {
             f.createNewFile();
         } catch (IOException e) {
@@ -160,6 +188,12 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     if (response.isSuccessful() && response.code() == 200) {
+                        editor.putString("username", s.getUsername());
+                        editor.putBoolean("isFirst", false);
+                        editor.putString("uid", s.getUid());
+                        editor.commit();
+
+
                             i = new Intent(context, Show.class);
                             startActivity(i);
                             ((Activity)context).finish();
@@ -176,4 +210,43 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+    private String getalpnum(int n) {
+        String AlphaNumericString = "0123456789" +
+                "ABCDEFGHIJKLMNOPQRSUVWXYS" +
+                "abcdefghijklmnopqrstuvwxyz";
+
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++) {
+
+            int index = (int) (AlphaNumericString.length() * Math.random());
+            sb.append(AlphaNumericString.charAt(index));
+        }
+
+        return sb.toString();
+
+    }
+
+    private String get_SHA1(String s){
+        MessageDigest md = null;
+        String hashtext = "";
+        try {
+            md = MessageDigest.getInstance("SHA-1");
+            byte[] messageDigest = md.digest(s.getBytes());
+
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            hashtext = no.toString(16);
+
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return hashtext;
+    }
+
 }
