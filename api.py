@@ -47,4 +47,4 @@ def verify():
     
 
 if __name__ == "__main__":
-    app.run(host = '192.168.43.165', port = 5000, threaded = False)       
+    app.run(host = '192.168.43.12', port = 5000, threaded = False)

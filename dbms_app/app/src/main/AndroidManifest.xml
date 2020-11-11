@@ -2,6 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dbms_app">
 
+    <uses-permission
+        android:name="android.permission.CAMERA"
+        android:requiredFeature="true" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <supports-screens
+        android:largeScreens="true"
+        android:smallScreens="true"
+        android:anyDensity="true"
+        android:xlargeScreens="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,23 +20,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dbms_app"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".Login"></activity>
-        <activity android:name=".Launcher" >
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config">
+        <activity android:name=".Show"> </activity>
+        <activity android:name=".Login"> </activity>
+        <activity android:name=".MainActivity"> </activity>
+        <activity android:name=".Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Show">
-
-        </activity>
-        <activity android:name=".MainActivity" />
     </application>
-    <uses-permission
-        android:name="android.permission.CAMERA"
-        android:requiredFeature="true" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

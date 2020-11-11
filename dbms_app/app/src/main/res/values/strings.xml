@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">dbms_app</string>
+    <string name="create_account"> <u>Create new Account</u> </string>
 </resources>

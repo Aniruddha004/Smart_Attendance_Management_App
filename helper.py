@@ -20,10 +20,11 @@ general = [{"sub_name":"CN", "total_lectures":0, "attended_lectures": 0},
               {"sub_name":"SDL", "total_lectures":0, "attended_lectures": 0}]
 
 
-client = pymongo.MongoClient("mongodb://localhost:27017/")
-db = client["dbms_database"]
-model = load_model("face_recog_model-k-n-face_model.h5" )
+client = pymongo.MongoClient('localhost',27017)
+db = client.dbms_database
+model = load_model("face_recog_model-k-n-face_model.h5")
 print(model.output, model.input)
+
 
 def insert_student(s):
     
