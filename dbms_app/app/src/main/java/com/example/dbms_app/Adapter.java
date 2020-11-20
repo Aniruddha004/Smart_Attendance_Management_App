@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
@@ -24,8 +25,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
-        subViewHolder svh = new subViewHolder(v);
-        return svh;
+        return new subViewHolder(v);
     }
 
     @Override
@@ -41,9 +41,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             percent = (float)att/(float)total*100;
         else
             percent= 0;
-        svh.total.setText(String.format("Total: %d", total));
-        svh.attended.setText(String.format("Attended: %d", att));
-        svh.percent.setText(String.format("%.2f", percent) + "%");
+        svh.total.setText(String.format(Locale.ENGLISH,"Total: %d", total));
+        svh.attended.setText(String.format(Locale.ENGLISH,"Attended: %d", att));
+        svh.percent.setText(String.format(Locale.ENGLISH,"%.2f %s",percent,"%"));
         }
 
     @Override

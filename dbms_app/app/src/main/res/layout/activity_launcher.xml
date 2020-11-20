@@ -37,7 +37,8 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars"/>
+                android:src="@drawable/ic_camera_logo"
+                android:contentDescription="@string/camera_image"/>
 
         </LinearLayout>
 
@@ -58,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:gravity="center"
-                android:text="Welcome"
+                android:text="@string/welcome"
                 android:textAlignment="center"
                 android:textColor="@color/dark_purple"
                 android:textSize="36sp"
@@ -73,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Sign In to continue"
+                android:text="@string/sign_in_to_continue"
                 android:textAlignment="center"
                 android:textColor="@color/dark_purple"
                 android:textSize="20sp"
@@ -85,7 +86,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="75dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/linearlayoutborder"
                 android:orientation="vertical"
@@ -99,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:padding="5dp"
-                    android:text="USERNAME"
+                    android:text="@string/username"
                     android:textColor="#6A519B"
                     android:textStyle="bold" />
 
@@ -114,7 +115,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:padding="5dp"
-                        android:src="@drawable/ic_account_circle"/>
+                        android:src="@drawable/ic_account_circle"
+                        android:contentDescription="@string/username"/>
 
                     <EditText
                         android:id="@+id/userName"
@@ -122,8 +124,9 @@
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:layout_weight="3"
-                        android:layout_marginHorizontal="10dp"
-                        android:inputType="textPersonName" />
+                        android:layout_marginEnd="6dp"
+                        android:inputType="textPersonName"
+                        android:autofillHints="@string/username" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -131,7 +134,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="75dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/linearlayoutborder"
                 android:orientation="vertical"
@@ -146,7 +149,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="2dp"
                     android:padding="5dp"
-                    android:text="PASSWORD"
+                    android:text="@string/password"
                     android:textColor="#6A519B"
                     android:textStyle="bold" />
 
@@ -161,16 +164,18 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:padding="5dp"
-                        android:src="@drawable/ic_password_lock"/>
+                        android:src="@drawable/ic_password_lock"
+                        android:contentDescription="@string/password"/>
 
                     <EditText
                         android:id="@+id/passwordEditText"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:ems="10"
                         android:layout_weight="3"
-                        android:layout_marginHorizontal="10dp"
-                        android:inputType="textPassword" />
+                        android:layout_marginEnd="6dp"
+                        android:inputType="textPassword"
+                        android:autofillHints="@string/password"/>
 
                 </LinearLayout>
 
@@ -185,13 +190,14 @@
                 android:backgroundTint="@color/dark_purple"
                 android:gravity="center"
                 android:shadowRadius="10"
-                android:text="Login"
+                android:text="@string/login"
                 android:textStyle="bold"
                 app:cornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3"/>
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+                tools:targetApi="lollipop" />
 
             <TextView
                 android:id="@+id/create_Acc"

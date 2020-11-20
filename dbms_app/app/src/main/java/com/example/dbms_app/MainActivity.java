@@ -1,22 +1,23 @@
-package com.example.dbms_app;
+ package com.example.dbms_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -26,7 +27,6 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -40,7 +40,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     Requests requests;
     Retrofit retrofit;
-    TextView submit;
+    TextView submit,clickImage;
     ImageView iv;
     EditText nameet, addet, classet, uidet, usernameet, passwordet;
     boolean imageok = false, infook = false;
@@ -50,11 +50,21 @@ public class MainActivity extends AppCompatActivity {
     private String prefs = "MYPREFS";
     private String filename;
     SharedPreferences.Editor editor;
+    ScrollView createAccScrollView;
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            Window window = this.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.white));
+        }
+
         sp = getSharedPreferences(prefs, MODE_PRIVATE);
         boolean first = sp.getBoolean("ifFirst", true);
         editor = sp.edit();
@@ -65,52 +75,47 @@ public class MainActivity extends AppCompatActivity {
             editor.commit();
         }*/
         filename = getalpnum(10) + ".jpg";
-        nameet = findViewById(R.id.nameet);
-        addet = findViewById(R.id.addet);
-        classet = findViewById(R.id.classet);
-        uidet = findViewById(R.id.uidet);
+        createAccScrollView = findViewById(R.id.createAccScrollView);
+        clickImage = findViewById(R.id.clickTextView);
+        nameet = findViewById(R.id.nameEditText);
+        addet = findViewById(R.id.addrEditText);
+        classet = findViewById(R.id.classEditText);
+        uidet = findViewById(R.id.uidEditText);
         iv = findViewById(R.id.iv);
         submit = findViewById(R.id.submit);
-        usernameet = findViewById(R.id.usernameet);
-        passwordet = findViewById(R.id.passwordet);
+        usernameet = findViewById(R.id.uNameEditText);
+        passwordet = findViewById(R.id.passwordEditText);
+
+        // To hide the vertical scrollbar
+        createAccScrollView.setVerticalScrollBarEnabled(false);
 
         context = MainActivity.this;
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.165:5000/").addConverterFactory(GsonConverterFactory.create()).build();
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.12:5000/").addConverterFactory(GsonConverterFactory.create()).build();
         requests = retrofit.create(Requests.class);
         //get_attendance();
 
-        iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!imageok) {
-                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    cameraIntent.putExtra("crop", "true");
-                    cameraIntent.putExtra("aspectX", 0);
-                    cameraIntent.putExtra("aspectY", 0);
-                    cameraIntent.putExtra("outputX", 150);
-                    cameraIntent.putExtra("outputY", 200);
-                    startActivityForResult(cameraIntent, 1);
-                }
+        iv.setOnClickListener(v -> {
+            if (!imageok) {
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                cameraIntent.putExtra("crop", "true");
+                cameraIntent.putExtra("aspectX", 0);
+                cameraIntent.putExtra("aspectY", 0);
+                cameraIntent.putExtra("outputX", 150);
+                cameraIntent.putExtra("outputY", 200);
+                startActivityForResult(cameraIntent, 1);
             }
         });
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = nameet.getText().toString();
-                String _class = classet.getText().toString();
-                String add = addet.getText().toString();
-                String uid = uidet.getText().toString();
-                String password = get_SHA1(passwordet.getText().toString());
-                String username = usernameet.getText().toString();
+        submit.setOnClickListener(v -> {
+            String name = nameet.getText().toString();
+            String _class = classet.getText().toString();
+            String add = addet.getText().toString();
+            String uid = uidet.getText().toString();
+            String password = get_SHA1(passwordet.getText().toString());
+            String username = usernameet.getText().toString();
 
-                Stundent stundent = new Stundent(name, _class, add, uid, username, password, filename);
-                post_info(stundent);
-
-
-            }
+            Stundent stundent = new Stundent(name, _class, add, uid, username, password, filename);
+            post_info(stundent);
         });
-
-
     }
 
     @Override
@@ -119,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             upload_image(photo);
+            clickImage.setEnabled(false);
         }
     }
 
@@ -192,11 +198,9 @@ public class MainActivity extends AppCompatActivity {
                         editor.putBoolean("isFirst", false);
                         editor.putString("uid", s.getUid());
                         editor.commit();
-
-
-                            i = new Intent(context, Show.class);
-                            startActivity(i);
-                            ((Activity)context).finish();
+                        i = new Intent(context, Show.class);
+                        startActivity(i);
+                        ((Activity)context).finish();
                     } else {
                         Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                     }
@@ -207,13 +211,10 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
-
         }
     }
     private String getalpnum(int n) {
-        String AlphaNumericString = "0123456789" +
-                "ABCDEFGHIJKLMNOPQRSUVWXYS" +
-                "abcdefghijklmnopqrstuvwxyz";
+        String AlphaNumericString = "0123456789" + "ABCDEFGHIJKLMNOPQRSUVWXYS" + "abcdefghijklmnopqrstuvwxyz";
 
         StringBuilder sb = new StringBuilder(n);
 
@@ -222,13 +223,11 @@ public class MainActivity extends AppCompatActivity {
             int index = (int) (AlphaNumericString.length() * Math.random());
             sb.append(AlphaNumericString.charAt(index));
         }
-
         return sb.toString();
-
     }
 
     private String get_SHA1(String s){
-        MessageDigest md = null;
+        MessageDigest md ;
         String hashtext = "";
         try {
             md = MessageDigest.getInstance("SHA-1");
@@ -245,8 +244,15 @@ public class MainActivity extends AppCompatActivity {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
         return hashtext;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(MainActivity.this,Launcher.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 }

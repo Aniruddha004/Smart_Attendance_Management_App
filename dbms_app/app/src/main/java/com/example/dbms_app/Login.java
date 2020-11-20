@@ -40,46 +40,43 @@ Requests requests;
         username = findViewById(R.id.usrname);
         pass = findViewById(R.id.pass);
         button = findViewById(R.id.but);
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.165:5000/").addConverterFactory(GsonConverterFactory.create()).build();
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.12:5000/").addConverterFactory(GsonConverterFactory.create()).build();
         requests = retrofit.create(Requests.class);
         sp = getSharedPreferences(MYPREFS, MODE_PRIVATE);
         context = Login.this;
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String user = username.getText().toString();
-                String password = get_SHA1(pass.getText().toString());
-                Call<String> call = requests.verify(user, password);
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        if(!response.body().equals("No match")){
-                            SharedPreferences.Editor editor = sp.edit();
-                            editor.putBoolean("isFirst", false);
-                            editor.putString("username", user);
-                            editor.putString("uid", response.body());
-                            editor.commit();
-                            Intent i = new Intent(context, Show.class );
-                            context.startActivity(i);
-                            ((Activity)context).finish();
-                        }
-                        else{
-                            Toast.makeText(Login.this, "Wrong username or password", Toast.LENGTH_SHORT).show();
-                        }
+        button.setOnClickListener(v -> {
+            String user = username.getText().toString();
+            String password = get_SHA1(pass.getText().toString());
+            Call<String> call = requests.verify(user, password);
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if(!response.body().equals("No match")){
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putBoolean("isFirst", false);
+                        editor.putString("username", user);
+                        editor.putString("uid", response.body());
+                        editor.apply();
+                        Intent i = new Intent(context, Show.class );
+                        context.startActivity(i);
+                        ((Activity)context).finish();
                     }
-
-                    @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-
+                    else{
+                        Toast.makeText(Login.this, "Wrong username or password", Toast.LENGTH_SHORT).show();
                     }
-                });
+                }
 
-            }
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+
+                }
+            });
+
         });
 
     }
     private String get_SHA1(String s){
-        MessageDigest md = null;
+        MessageDigest md ;
         String hashtext = "";
         try {
             md = MessageDigest.getInstance("SHA-1");

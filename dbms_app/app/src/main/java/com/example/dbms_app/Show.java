@@ -34,7 +34,7 @@ public class Show extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.165:5000/").addConverterFactory(GsonConverterFactory.create()).build();
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.12:5000/").addConverterFactory(GsonConverterFactory.create()).build();
         requests = retrofit.create(Requests.class);
         srl = findViewById(R.id.refresh);
         rv = findViewById(R.id.rv);
@@ -48,20 +48,12 @@ public class Show extends AppCompatActivity {
         Adapter adapter = new Adapter(this, subjects);
         rv.setAdapter(adapter);
 
-        srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                get_attendance(uid);
-                srl.setRefreshing(false);
-            }
+        srl.setOnRefreshListener(() -> {
+            get_attendance(uid);
+            srl.setRefreshing(false);
         });
 
-        callback = new Callbacks() {
-            @Override
-            public void OnGetSuccess() {
-                adapter.notifyDataSetChanged();
-            }
-        };
+        callback = adapter::notifyDataSetChanged;
 
     }
 
@@ -74,8 +66,9 @@ public class Show extends AppCompatActivity {
                 if (response.isSuccessful() && response.code() == 200) {
                     List<Subjects> subjectsList = response.body();
                     subjects.clear();
-                    for (Subjects s : subjectsList)
-                        subjects.add(s);
+                    /*for (Subjects s : subjectsList)
+                        subjects.add(s);*/
+                    subjects.addAll(subjectsList);
                     callback.OnGetSuccess();
 
                 }
