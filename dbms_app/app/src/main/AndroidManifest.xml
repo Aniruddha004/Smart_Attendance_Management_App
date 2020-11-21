@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.dbms_app">
 
     <uses-permission
         android:name="android.permission.CAMERA"
-        android:requiredFeature="true" />
+        android:requiredFeature="true"
+        tools:targetApi="o" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <supports-screens
@@ -21,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dbms_app"
         android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_security_config">
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:targetApi="n">
         <activity android:name=".Show"> </activity>
         <activity android:name=".Login"> </activity>
         <activity android:name=".MainActivity"> </activity>

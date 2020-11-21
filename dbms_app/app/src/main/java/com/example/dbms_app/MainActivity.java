@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +42,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     Requests requests;
     Retrofit retrofit;
-    TextView submit,clickImage;
+    TextView clickImage;
     ImageView iv;
     EditText nameet, addet, classet, uidet, usernameet, passwordet;
     boolean imageok = false, infook = false;
@@ -50,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
     private String prefs = "MYPREFS";
     private String filename;
     SharedPreferences.Editor editor;
-    ScrollView createAccScrollView;
+    //ScrollView createAccScrollView;
+    //Button submit;
+    LinearLayout linearLayout;
 
     @SuppressLint("CommitPrefEdits")
     @Override
@@ -58,12 +62,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        /*if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             Window window = this.getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(this.getResources().getColor(R.color.white));
-        }
+        }*/
 
         sp = getSharedPreferences(prefs, MODE_PRIVATE);
         boolean first = sp.getBoolean("ifFirst", true);
@@ -75,19 +79,20 @@ public class MainActivity extends AppCompatActivity {
             editor.commit();
         }*/
         filename = getalpnum(10) + ".jpg";
-        createAccScrollView = findViewById(R.id.createAccScrollView);
-        clickImage = findViewById(R.id.clickTextView);
+        //createAccScrollView = findViewById(R.id.createAccScrollView);
+        //clickImage = findViewById(R.id.clickTextView);
         nameet = findViewById(R.id.nameEditText);
         addet = findViewById(R.id.addrEditText);
         classet = findViewById(R.id.classEditText);
         uidet = findViewById(R.id.uidEditText);
         iv = findViewById(R.id.iv);
-        submit = findViewById(R.id.submit);
+        linearLayout = findViewById(R.id.backLayout);
+        //submit = findViewById(R.id.submit);
         usernameet = findViewById(R.id.uNameEditText);
         passwordet = findViewById(R.id.passwordEditText);
 
         // To hide the vertical scrollbar
-        createAccScrollView.setVerticalScrollBarEnabled(false);
+        //createAccScrollView.setVerticalScrollBarEnabled(false);
 
         context = MainActivity.this;
         retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.12:5000/").addConverterFactory(GsonConverterFactory.create()).build();
@@ -105,7 +110,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(cameraIntent, 1);
             }
         });
-        submit.setOnClickListener(v -> {
+        linearLayout.setOnClickListener(view -> {
+            onBackPressed();
+        });
+        /*submit.setOnClickListener(v -> {
             String name = nameet.getText().toString();
             String _class = classet.getText().toString();
             String add = addet.getText().toString();
@@ -115,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
             Stundent stundent = new Stundent(name, _class, add, uid, username, password, filename);
             post_info(stundent);
-        });
+        });*/
     }
 
     @Override

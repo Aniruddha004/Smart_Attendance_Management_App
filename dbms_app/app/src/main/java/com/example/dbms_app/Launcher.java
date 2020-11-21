@@ -39,9 +39,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Launcher extends AppCompatActivity {
     TextView createAccount;
-    Button loginButton;
+    Button loginButton,signUp;
     EditText usrName,pass;
-    ScrollView scrollView;
+    //ScrollView scrollView;
     Retrofit retrofit;
     Requests requests;
     SharedPreferences sp;
@@ -64,8 +64,8 @@ public class Launcher extends AppCompatActivity {
         loginButton.setEnabled(false);
         usrName = findViewById(R.id.userName);
         pass = findViewById(R.id.passwordEditText);
-        scrollView = findViewById(R.id.mainScrollView);
-        scrollView.setVerticalScrollBarEnabled(false);
+        //scrollView = findViewById(R.id.mainScrollView);
+        //scrollView.setVerticalScrollBarEnabled(false);
         passImage = findViewById(R.id.passImage);
 
         retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.12:5000/").addConverterFactory(GsonConverterFactory.create()).build();
@@ -131,7 +131,7 @@ public class Launcher extends AppCompatActivity {
         createAccount.setOnClickListener(v -> {
             Intent i = new Intent(Launcher.this, MainActivity.class);
             startActivity(i);
-            finish();
+            this.finish();
         });
     }
     private String get_SHA1(String s){
