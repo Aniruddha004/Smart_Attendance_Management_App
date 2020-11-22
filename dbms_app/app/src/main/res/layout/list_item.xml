@@ -1,58 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/light_purple"
-    app:cardCornerRadius="20dp"
-    android:layout_margin="10dp">
-     <LinearLayout
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/bglight"
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="@string/subject_name"
-            android:textSize="25sp"
-            android:id="@+id/subname"
-            android:layout_marginVertical="10dp"/>
 
             <TextView
+                android:id="@+id/subname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:text="@string/subject_name"
+                android:textColor="@color/cardBackground"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/percent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/violet"
-                android:paddingEnd="7dp"
-                android:paddingStart="0dp"
-                android:textAlignment="viewEnd"
+                android:layout_marginVertical="10dp"
                 android:gravity="end"
+                android:paddingStart="0dp"
+                android:paddingEnd="7dp"
                 android:text="@string/percent"
-                android:textSize="25sp"
-                android:id="@+id/percent"
-                android:layout_marginVertical="10dp"/>
+                android:textAlignment="viewEnd"
+                android:textColor="@color/bgdark"
+                android:textSize="20sp" />
         </LinearLayout>
+
         <TextView
+            android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/total"
-            android:id="@+id/total"
-            android:textColor="@color/white"
-            android:textSize="15sp"/>
+            android:textColor="@color/subHeading"
+            android:textSize="15sp" />
+
         <TextView
+            android:id="@+id/attended"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
             android:text="@string/attended"
-            android:id="@+id/attended"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:layout_marginVertical="10dp"/>
-
+            android:textColor="@color/subHeading"
+            android:textSize="15sp" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

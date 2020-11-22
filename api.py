@@ -18,7 +18,7 @@ def method():
     filename = werkzeug.utils.secure_filename(imagefile.filename)
     imagefile.save(filename)
     
-    if(check_if_face(filename)):    
+    if(check_if_face(filename)):   
         return jsonify("OK")
     else:
         return jsonify("No face detected")
@@ -47,4 +47,4 @@ def verify():
     
 
 if __name__ == "__main__":
-    app.run(host = '192.168.43.12', port = 5000, threaded = False)
+    app.run(host = '192.168.43.165', port = 5000, threaded = False)

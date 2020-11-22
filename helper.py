@@ -8,6 +8,7 @@ from tensorflow.keras.models import load_model
 from mtcnn import MTCNN
 from matplotlib.pyplot import imshow
 import os
+from model import InceptionV3
 
 
 general = [{"sub_name":"CN", "total_lectures":0, "attended_lectures": 0},
@@ -22,8 +23,7 @@ general = [{"sub_name":"CN", "total_lectures":0, "attended_lectures": 0},
 
 client = pymongo.MongoClient('localhost',27017)
 db = client.dbms_database
-model = load_model("face_recog_model-k-n-face_model.h5")
-print(model.output, model.input)
+model = InceptionV3()
 
 
 def insert_student(s):
@@ -66,12 +66,14 @@ def check_if_face(imagepath):
 
 def db_verify(username, password):
     res = db.students.find_one({"username":username})
+    if res == None:
+        return "No match"
     if(res['password']==password):
         return res['uid']
     else:
         return "No match"
     
-def new_user(student):
+def new_user(student, remove_image):
     imagepath = student['image_path']
     student.pop('image_path', 'no key')
     img = cv2.imread(imagepath)
@@ -80,6 +82,8 @@ def new_user(student):
     student['face_encodings'] = img
     
     if(insert_student(student)):
+        if(remove_image):
+            os.remove(imagepath)
         return True
 
 def similarities(image, images):
@@ -130,9 +134,8 @@ def mark_attendance(cur_lecture, detected_faces):
     i = None
     for j,sub in enumerate(general):
         if(sub['sub_name']==cur_lecture):
-            i =j
+            i = j
             break;
-    
     
     for re in res:
         curr = re['subjects']
@@ -142,7 +145,6 @@ def mark_attendance(cur_lecture, detected_faces):
         curr[i]['total_lectures']+=1;
         
         db.subjects.update_one({'uid':uid}, {"$set":{"subjects":curr}})
-detect_faces("SDL", "L6rf7oxxLE.jpg")
 
 
 

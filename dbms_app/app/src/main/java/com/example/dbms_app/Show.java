@@ -5,11 +5,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,57 +35,58 @@ public class Show extends AppCompatActivity {
     Callbacks callback;
     ArrayList<Subjects> subjects;
     SharedPreferences sp;
+    ImageView logout;
+    TextView uidtv;
     private String prefs = "MYPREFS";
+    Connect connect = Launcher.connect;
+    Context context ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.12:5000/").addConverterFactory(GsonConverterFactory.create()).build();
-        requests = retrofit.create(Requests.class);
+
+        uidtv = findViewById(R.id.uidtv);
         srl = findViewById(R.id.refresh);
+        logout = findViewById(R.id.logout);
         rv = findViewById(R.id.rv);
+
+        context = this;
         subjects = new ArrayList<>();
-        sp = getSharedPreferences(prefs, MODE_PRIVATE);
-        String uid = sp.getString("uid", "");
-        get_attendance(uid);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(layoutManager);
-
         Adapter adapter = new Adapter(this, subjects);
         rv.setAdapter(adapter);
 
+        sp = getSharedPreferences(prefs, MODE_PRIVATE);
+        String uid = sp.getString("uid", "");
+        uidtv.setText(uid.toUpperCase());
+
+
+        callback = subs -> {
+            subjects.clear();
+            subjects.addAll(subs);
+            adapter.notifyDataSetChanged();
+        };
+
         srl.setOnRefreshListener(() -> {
-            get_attendance(uid);
+            connect.get_attendance(uid,callback, context);
             srl.setRefreshing(false);
         });
 
-        callback = adapter::notifyDataSetChanged;
+        connect.get_attendance(uid,callback,context);
+        logout.setOnClickListener(v -> log_out());
 
     }
 
-    private void get_attendance(String uid) {
-
-        Call<List<Subjects>> call = requests.get_attendance(uid);
-        call.enqueue(new Callback<List<Subjects>>() {
-            @Override
-            public void onResponse(Call<List<Subjects>> call, Response<List<Subjects>> response) {
-                if (response.isSuccessful() && response.code() == 200) {
-                    List<Subjects> subjectsList = response.body();
-                    subjects.clear();
-                    /*for (Subjects s : subjectsList)
-                        subjects.add(s);*/
-                    subjects.addAll(subjectsList);
-                    callback.OnGetSuccess();
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Subjects>> call, Throwable t) {
-                Toast.makeText(Show.this, "please check your internet connection lol", Toast.LENGTH_SHORT).show();
-                Log.e("12345678910111213", t.getMessage());
-            }
-        });
+    public void log_out(){
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean("isFirst", true);
+        editor.putString("username", "");
+        editor.putString("uid", "");
+        editor.apply();
+        Intent i = new Intent(Show.this, Launcher.class);
+        startActivity(i);
+        finish();
     }
 }

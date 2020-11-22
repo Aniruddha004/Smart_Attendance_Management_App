@@ -22,7 +22,7 @@ interface Requests {
     );
 
     @POST("posts_info")
-    Call<String> postinfo(@Body Stundent stundent);
+    Call<String> postinfo(@Body Student stundent);
 
     @GET("verify")
     Call<String> verify(

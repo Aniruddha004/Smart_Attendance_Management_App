@@ -1,6 +1,6 @@
 package com.example.dbms_app;
 
-class Stundent {
+public class Student {
     private String name;
     private String _class;
     private String add;
@@ -58,7 +58,7 @@ class Stundent {
         this.uid = uid;
     }
 
-    public Stundent(String name, String _class, String add, String uid, String username, String password, String image_path) {
+    public Student(String name, String _class, String add, String uid, String username, String password, String image_path) {
         this.name = name;
         this._class = _class;
         this.add = add;

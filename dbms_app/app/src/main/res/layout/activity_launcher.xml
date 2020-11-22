@@ -1,223 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainScrollView"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Launcher"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:scrollbars="vertical"
-    android:scrollbarSize="0dp"
-    android:overScrollMode="ifContentScrolls">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="50dp"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@color/cardBackground">
 
-        <LinearLayout
-            android:id="@+id/photoLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ExtraText">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/ic_camera_logo"
-                android:contentDescription="@string/camera_image"/>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photoLayout"
-            android:padding="20dp">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:gravity="center"
-                android:text="@string/welcome"
-                android:textAlignment="center"
-                android:textColor="@color/dark_purple"
-                android:textSize="36sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="@string/sign_in_to_continue"
-                android:textAlignment="center"
-                android:textColor="@color/dark_purple"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+            android:layout_marginTop="50dp"
+            android:fillViewport="true"
+            android:overScrollMode="never">
 
             <LinearLayout
-                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/linearlayoutborder"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.515"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
-                    android:padding="5dp"
-                    android:text="@string/username"
-                    android:textColor="#6A519B"
+                    android:layout_marginStart="30dp"
+                    android:text="Log In"
+                    android:textColor="@color/headings"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
+
+                <EditText
+                    android:id="@+id/userName"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:drawableTint="@color/drawableTint"
+                    android:hint="@string/username"
+                    android:padding="15dp"
+                    android:textColor="@color/headings"
+                    android:textColorHint="@color/drawableTint"
+                    android:textStyle="bold"
+                    tools:targetApi="m"
+                    android:backgroundTint="@color/drawableTint"/>
 
-                    <ImageView
-                        android:id="@+id/usrNameImage"
-                        android:layout_width="20dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_account_circle"
-                        android:contentDescription="@string/username"/>
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:autofillHints="@string/password"
+                    android:drawableRight="@drawable/ic_password_lock"
+                    android:drawableTint="@color/drawableTint"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:textColor="@color/headings"
+                    android:textColorHint="@color/drawableTint"
+                    android:textStyle="bold"
+                    tools:targetApi="m"
+                    android:backgroundTint="@color/drawableTint"/>
 
-                    <EditText
-                        android:id="@+id/userName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:ems="10"
-                        android:layout_weight="3"
-                        android:layout_marginEnd="6dp"
-                        android:inputType="textPersonName"
-                        android:autofillHints="@string/username" />
-                </LinearLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/loginButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="20dp"
+                    android:backgroundTint="@color/bgdark"
+                    android:text="Login"
+                    android:textColor="@color/white"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="35dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="35dp"
+                    android:text="@string/create_account"
+                    android:textColor="@color/bgdark"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:id="@+id/create_Acc"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/linearlayoutborder"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.505"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        </androidx.core.widget.NestedScrollView>
+    </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
-                    android:layout_marginTop="2dp"
-                    android:padding="5dp"
-                    android:text="@string/password"
-                    android:textColor="#6A519B"
-                    android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/passImage"
-                        android:layout_width="20dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_password_lock"
-                        android:contentDescription="@string/password"/>
-
-                    <EditText
-                        android:id="@+id/passwordEditText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:ems="10"
-                        android:layout_weight="3"
-                        android:layout_marginEnd="6dp"
-                        android:inputType="textPassword"
-                        android:autofillHints="@string/password"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/loginButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="@color/dark_purple"
-                android:gravity="center"
-                android:shadowRadius="10"
-                android:text="@string/login"
-                android:textStyle="bold"
-                app:cornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-                tools:targetApi="lollipop" />
-
-            <TextView
-                android:id="@+id/create_Acc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
-                android:gravity="center"
-                android:text="@string/create_account"
-                android:textColor="@color/dark_purple"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.51"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginButton"
-                app:layout_constraintVertical_bias="0.0" />
-
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
