@@ -1,5 +1,4 @@
 
 *.h5
 *.zip
-*.jpg
 __pycache__/
