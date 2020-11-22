@@ -1,5 +1,4 @@
 import numpy as np
-import json
 class Student():
     def __init__(self, name, _class, add, uid):
         self.name = name;

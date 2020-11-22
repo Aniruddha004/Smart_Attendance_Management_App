@@ -1,14 +1,10 @@
 from flask import Flask, jsonify, request
 import flask
 import werkzeug
-import time
 from helper import check_if_face, db_verify, new_user, helper_geta
 
 app = Flask(__name__)
 
-p = True;
-
-li = {"model":"omkar", "age": 20}
 
 @app.route('/posts_image',  methods = ['POST'])
 def method():

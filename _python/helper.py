@@ -1,12 +1,7 @@
 import pymongo
-from Student import Student
-from flask import jsonify
 import numpy as np
 import cv2
-from tensorflow import keras
-from tensorflow.keras.models import load_model
 from mtcnn import MTCNN
-from matplotlib.pyplot import imshow
 import os
 from model import InceptionV3
 
