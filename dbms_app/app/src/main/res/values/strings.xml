@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">dbms_app</string>
+    <string name="create_account"> <u>Create Account</u> </string>
+    <string name="click_to_add_image"> Click to <br> add Image</br></string>
+    <string name="password">PASSWORD</string>
+    <string name="username">USERNAME</string>
+    <string name="sign_in_to_continue">Sign In to continue</string>
+    <string name="welcome">Welcome</string>
+    <string name="login">Login</string>
+    <string name="name">NAME</string>
+    <string name="address">ADDRESS</string>
+    <string name="uid">UID (C2K__)</string>
+    <string name="submit">Submit</string>
+    <string name="signIn">Signing In…</string>
+    <string name="subject_name">Subject Name</string>
+    <string name="percent">percent</string>
+    <string name="total">Total:</string>
+    <string name="attended">Attended:</string>
+    <string name="camera_image">Camera Image</string>
+    <string name="enter_class">Enter Class</string>
+    <string name="enter_uid">Enter UID</string>
+</resources>

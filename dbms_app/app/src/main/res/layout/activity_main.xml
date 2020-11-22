@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:cardBackgroundColor="@color/onCardBackgound"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintBottom_toTopOf="@id/cardView1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cardView1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:text="Add\nImage"
+            android:textColor="@color/drawableTint" />
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/backLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_baseline_arrow_back"
+                app:tint="@color/cardBackground" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:text="Back"
+                android:textColor="@color/cardBackground"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/cardBackground"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:fillViewport="true"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="Create Account"
+                    android:textColor="@color/headings"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/nameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:backgroundTint="@color/drawableTint"
+                    android:drawableRight="@drawable/ic_account_circle"
+                    android:drawableTint="@color/drawableTint"
+                    android:hint="@string/name"
+                    android:padding="15dp"
+                    android:textColor="@color/headings"
+                    android:textColorHint="@color/drawableTint"
+                    android:textStyle="bold"
+                    tools:targetApi="m" />
+                <!--android:background="@android:color/transparent" -->
+
+                <EditText
+                    android:id="@+id/uNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:backgroundTint="@color/drawableTint"
+                    android:drawableTint="@color/drawableTint"
+                    android:hint="@string/username"
+                    android:padding="15dp"
+                    android:textColor="@color/headings"
+                    android:textColorHint="@color/drawableTint"
+                    android:textStyle="bold"
+                    tools:targetApi="m" />
+
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:autofillHints="@string/password"
+                    android:backgroundTint="@color/drawableTint"
+                    android:drawableRight="@drawable/ic_password_lock"
+                    android:drawableTint="@color/drawableTint"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:textColor="@color/headings"
+                    android:textColorHint="@color/drawableTint"
+                    android:textStyle="bold"
+                    tools:targetApi="m" />
+
+                <EditText
+                    android:id="@+id/classEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:backgroundTint="@color/drawableTint"
+                    android:drawableTint="@color/drawableTint"
+                    android:hint="CLASS"
+                    android:padding="15dp"
+                    android:textColor="@color/headings"
+                    android:textColorHint="@color/drawableTint"
+                    android:textStyle="bold"
+                    tools:targetApi="m" />
+
+                <EditText
+                    android:id="@+id/addrEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:backgroundTint="@color/drawableTint"
+                    android:drawableRight="@drawable/ic_address"
+                    android:drawableTint="@color/drawableTint"
+                    android:hint="@string/address"
+                    android:inputType="textPostalAddress"
+                    android:padding="15dp"
+                    android:textColor="@color/headings"
+                    android:textColorHint="@color/drawableTint"
+                    android:textStyle="bold"
+                    tools:targetApi="m" />
+
+                <EditText
+                    android:id="@+id/uidEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:backgroundTint="@color/drawableTint"
+                    android:drawableTint="@color/drawableTint"
+                    android:hint="@string/uid"
+                    android:padding="15dp"
+                    android:textColor="@color/headings"
+                    android:textColorHint="@color/drawableTint"
+                    android:textStyle="bold"
+                    tools:targetApi="m" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/signUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:backgroundTint="@color/bgdark"
+                    android:text="Sign Up"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

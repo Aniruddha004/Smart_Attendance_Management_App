@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cardBackground">#FFFFFF</color>
+    <color name="subHeading">#DCDCDC</color>
+    <color name="bglight">#0288D1</color>
+    <color name="bgdark">#303F9F</color>
+    <color name="drawableTint">#696969</color>
+    <color name="headings">#191919</color>
+    <color name="onCardBackgound">#EEEEEE</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+</resources>
