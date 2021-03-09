@@ -32,3 +32,22 @@ Training model notebook: [Click Here](https://www.kaggle.com/omkaramilkanthwar/f
 <img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/login_light.jpg" height="400">      &nbsp; 
 <img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/signup_dark.jpg" height="400">      &nbsp; 
 <img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/signup_light.jpg" height="400">     &nbsp;
+
+# USER INSTRUCTIONS
+* Install Dependencies  
+    `pip install -r requirements.txt` 
+    
+* Run Local Server  
+    `python api.py`
+    
+* Run Desktop Client  
+    `python UI.py`
+
+# Meet the Makers
+Created with 💖 by Team \
+Omkar Amilkanthwar  &nbsp; -  [lnx2000](https://github.com/lnx2000)\
+Aniruddha Deshmukh   - [Aniruddha004](https://github.com/Aniruddha004) \
+Atharva Satpute     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [atharva-satpute](https://github.com/atharva-satpute) \
+Pranav Deshmukh      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [pranav918](https://github.com/pranav918)
+
+
