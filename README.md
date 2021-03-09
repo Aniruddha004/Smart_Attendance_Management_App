@@ -28,7 +28,7 @@ Face Recognition Model : [Click Here](https://drive.google.com/file/d/1EJnMNjI4f
 Training Model Notebook: [Click Here](https://www.kaggle.com/omkaramilkanthwar/face-model)
 
 # SCREENSHOTS
-<img src="https://github.com/pranav918/Smart-Attendence-Management-Application/blob/main/images/login_dark.jpg" height="270">   <img src="https://github.com/pranav918/Smart-Attendence-Management-Application/blob/main/images/login_light.jpg" height="270">   <img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/signup_dark.jpg" height="270">    <img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/signup_light.jpg" height="270">  <img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/a_dark.jpg" height="270">  <img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/a_light.jpg" height="270"> &nbsp;
+<img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/login_dark.jpg" height="270">   <img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/login_light.jpg" height="270">   <img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/signup_dark.jpg" height="270">    <img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/signup_light.jpg" height="270">  <img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/a_dark.jpg" height="270">  <img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/a_light.jpg" height="270"> &nbsp;
 
 # USER INSTRUCTIONS
 * Install Dependencies  
