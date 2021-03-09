@@ -1,4 +1,4 @@
-# Smart Attendance Management System Application
+# Smart Attendance Management Application
 
 ## TOPIC DESCRIPTION
 This software is an Attendance Management System for schools & colleges. Basic idea behind the project is to ease the process of marking the attendance by the lecturer. 
@@ -15,23 +15,20 @@ The Smart Attendance Management System first scans image of student through came
 ## FLOW DIAGRAM
 
 <p align="center">
-<img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/Flow Diagram.png" height="400">
+<img src="https://github.com/pranav918/Smart-Attendence-Management-Application/blob/main/images/Flow%20Diagram.png" height="400">
 </p>
 
 ## DATABASE STRUCTURE
 <p align="center">
-<img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/Database Structure.png" height="400">
+<img src="https://github.com/pranav918/Smart-Attendence-Management-Application/blob/main/images/Database%20Structure.png" height="400">
 </p>
 
-## MODEL DETAILS
-Face recognition model : [Click Here](https://drive.google.com/file/d/1EJnMNjI4fCBkewhpUShoGx9uZNw9uIQ7/view?usp=sharing) <br/>
-Training model notebook: [Click Here](https://www.kaggle.com/omkaramilkanthwar/face-model)
+## MACHINE LEARNING MODEL DETAILS
+Face Recognition Model : [Click Here](https://drive.google.com/file/d/1EJnMNjI4fCBkewhpUShoGx9uZNw9uIQ7/view?usp=sharing) <br/>
+Training Model Notebook: [Click Here](https://www.kaggle.com/omkaramilkanthwar/face-model)
 
 # SCREENSHOTS
-<img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/login_dark.jpg" height="400">       &nbsp;
-<img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/login_light.jpg" height="400">      &nbsp; 
-<img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/signup_dark.jpg" height="400">      &nbsp; 
-<img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/signup_light.jpg" height="400">     &nbsp;
+<img src="https://github.com/pranav918/Smart-Attendence-Management-Application/blob/main/images/login_dark.jpg" height="270">   <img src="https://github.com/pranav918/Smart-Attendence-Management-Application/blob/main/images/login_light.jpg" height="270">   <img src="https://github.com/pranav918/Smart-Attendence-Management-Application/blob/main/images/signup_dark.jpg" height="270">    <img src="https://github.com/pranav918/Smart-Attendence-Management-Application/blob/main/images/signup_light.jpg" height="270">  <img src="https://github.com/pranav918/Smart-Attendence-Management-Application/blob/main/images/a_dark.jpg" height="270">  <img src="https://github.com/pranav918/Smart-Attendence-Management-Application/blob/main/images/a_light.jpg" height="270"> &nbsp;
 
 # USER INSTRUCTIONS
 * Install Dependencies  
@@ -44,7 +41,7 @@ Training model notebook: [Click Here](https://www.kaggle.com/omkaramilkanthwar/f
     `python UI.py`
 
 # Meet the Makers
-Created with 💖 by Team \
+Made with 💖 by Team \
 Omkar Amilkanthwar  &nbsp; -  [lnx2000](https://github.com/lnx2000)\
 Aniruddha Deshmukh   - [Aniruddha004](https://github.com/Aniruddha004) \
 Atharva Satpute     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [atharva-satpute](https://github.com/atharva-satpute) \
