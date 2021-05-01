@@ -20,7 +20,7 @@ The Smart Attendance Management System first scans image of student through came
 
 ## DATABASE STRUCTURE
 <p align="center">
-<img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/Database%20Structure.png" height="400">
+<img src="https://github.com/Aniruddha004/Smart_Attendance_Management_App/blob/master/images/DatabaseStructure.png" height="400">
 </p>
 
 ## MACHINE LEARNING MODEL DETAILS
